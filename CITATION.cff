@@ -1,0 +1,14 @@
+cff-version: 1.0.0
+message: "If you use this software, please cite the CA-MoDE and BoLD papers."
+title: "CA-MoDE: Context-Aware Mixture of Domain Experts for Bodily Expression of Emotion"
+type: software
+authors:
+  - family-names: Dehshibi
+    given-names: Mohammad Mahdi
+    orcid: "https://orcid.org/0000-0001-8112-5419"
+  - family-names: Masip
+    given-names: David
+    orcid: "https://orcid.org/0000-0001-7898-1847"
+repository-code: "https://github.com/dehshibi/CA-MoDE"
+date-released: 2026-08-02
+license: "Apache License 2.0"
