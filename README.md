@@ -15,7 +15,7 @@ CA-MoDE models the relationship between bodily emotion and surrounding context e
 > - Shared feature encoding with a `14 × 14 × 528` feature map
 > - Scene, object, and emotion expert branches
 > - Context-prior fitting on the training partition
-> - Available and anticipated-unavailable context priors
+> - Available and anticipated unavailable context priors
 > - Max-endorsement probabilistic fusion
 > - MSE training objective for 26 categorical emotions and 3 VAD dimensions
 > - CUDA dry-run, shape test, checkpoint-reload test, and stress test
@@ -41,6 +41,7 @@ Three domain experts process this representation:
 - **Emotion expert** $\mathcal{H}^{\mathrm{emotion}}$: predicts 26 discrete emotions and Valence, Arousal, and Dominance (VAD)
 
 The context experts generate empirical priors on the **training split only**:
+
 $$
 \mathcal{P}^{+}_{i,j} = \Pr(\mathbb{B}_i \mid \mathbb{A}_j),
 \qquad
@@ -48,6 +49,7 @@ $$
 $$
 
 CA-MoDE uses per-emotion max endorsement across scene and object context:
+
 $$
 p_i^{+} = \max_j \mathcal{P}^{+}_{i,j},
 \qquad
@@ -55,16 +57,19 @@ p_i^{-} = \max_j \mathcal{P}^{-}_{i,j}.
 $$
 
 The gate is:
+
 $$
 Q_i = \sigma\left(\alpha(p_i^{+} - \tau)\right),
 $$
 
 and the final contextual prior is:
+
 $$
 \hat{p}_i = Q_i p_i^{+} + (1 - Q_i)p_i^{-}.
 $$
 
 The final prediction is:
+
 $$
 \tilde{\mathbf{y}}
 =
@@ -152,7 +157,7 @@ python -c "import torch; print(torch.cuda.is_available()); print(torch.cuda.get_
 
 ## Quick validation
 
-The following commands validate installation and core model behavior. They use a synthetic dataset and do **not** measure scientific performance on BoLD.
+The following commands validate installation and core model behaviour. They use a synthetic dataset and do **not** measure scientific performance on BoLD.
 
 ### Dry run
 
@@ -182,7 +187,7 @@ python stress_test.py
 The stress test validates:
 
 - Forward propagation
-- Backward propagation and optimizer updates
+- Backward propagation and optimiser updates
 - Finite predictions and gate values
 - Batch sizes 1, 2, 4, and 8
 - Checkpoint save/load equivalence
@@ -247,7 +252,7 @@ wandb/
 
 Download BoLD from the official challenge portal and follow its access conditions.
 
-CA-MoDE is evaluated using still images extracted from BoLD video clips. Split data **at clip level**, rather than frame level, to avoid frames from the same source clip appearing in multiple partitions.
+CA-MoDE is evaluated using still images extracted from BoLD video clips. Split data **at the clip level**, rather than frame level, to avoid frames from the same source clip appearing in multiple partitions.
 
 Use the following split policy:
 
@@ -436,9 +441,9 @@ Report:
 - Mean $R^{2}$ (m$R^{2}$) for VAD
 - Emotion Recognition Score (ERS)
 
-$
+$$
 \mathrm{ERS} = \frac{1}{2}\Big(\mathrm{m}R^2+\frac{1}{2}(\mathrm{m}AP + \mathrm{m}RA)\Big).
-$
+$$
 
 ---
 
@@ -489,8 +494,8 @@ Before reporting results, verify all items below:
 - [ ] BoLD split is clip-disjoint
 - [ ] Contextual priors were fitted on the training split only
 - [ ] Validation and test data were not used for prior fitting
-- [ ] Scene expert is initialized from Places2/Places365 weights and frozen
-- [ ] Object expert is initialized from COCO detector weights and frozen
+- [ ] Scene expert is initialised from Places2/Places365 weights and frozen
+- [ ] Object expert is initialised from COCO detector weights and frozen
 - [ ] Scene pseudo-labels have 365 dimensions
 - [ ] Object pseudo-labels have 80 dimensions
 - [ ] Context projectors remain trainable
@@ -511,7 +516,7 @@ In particular, paper-level reproduction requires:
 1. Official BoLD access and clip-level splits
 2. A pretrained Places2/Places365 scene expert
 3. A pretrained COCO object detector
-4. Conversion of detector outputs into normalized 80-category confidence vectors
+4. Conversion of detector outputs into normalised 80-category confidence vectors
 5. Training and evaluation scripts for BoLD
 6. Exact evaluation code for mAP, mRA, mR², and ERS
 7. Reporting results across reproducible seeds
