@@ -28,11 +28,11 @@ CA-MoDE models the relationship between bodily emotion and surrounding context e
 
 Given an input image $x$, CA-MoDE obtains a shared feature map:
 
-$$
+```math
 \mathbf{F} = \mathcal{H}^{\mathrm{base}}(\mathbf{X}),
 \qquad
 \mathbf{F} \in \mathbb{R}^{14 \times 14 \times 528}.
-$$
+```
 
 Three domain experts process this representation:
 
@@ -42,42 +42,37 @@ Three domain experts process this representation:
 
 The context experts generate empirical priors on the **training split only**:
 
-$$
+```math
 \mathcal{P}^{+}_{i,j} = \Pr(\mathbb{B}_i \mid \mathbb{A}_j),
 \qquad
 \mathcal{P}^{-}_{i,j} = \Pr(\mathbb{B}_i \mid \neg\mathbb{A}_j).
-$$
+```
 
 CA-MoDE uses per-emotion max endorsement across scene and object context:
 
-$$
+```math
 p_i^{+} = \max_j \mathcal{P}^{+}_{i,j},
 \qquad
 p_i^{-} = \max_j \mathcal{P}^{-}_{i,j}.
-$$
+```
 
 The gate is:
 
-$$
+```math
 Q_i = \sigma\left(\alpha(p_i^{+} - \tau)\right),
-$$
+```
 
 and the final contextual prior is:
 
-$$
+```math
 \hat{p}_i = Q_i p_i^{+} + (1 - Q_i)p_i^{-}.
-$$
+```
 
 The final prediction is:
 
-$$
-\tilde{\mathbf{y}}
-=
-\frac{1}{\lambda}
-\hat{\mathbf{p}}
-\odot
-\mathbf{y}^{\mathrm{emotion}}
-$$
+```math
+\tilde{\mathbf{y}} = \frac{1}{\lambda}\hat{\mathbf{p}} \odot \mathbf{y}^{\mathrm{emotion}}
+```
 
 ---
 
@@ -441,9 +436,9 @@ Report:
 - Mean $R^{2}$ (m$R^{2}$) for VAD
 - Emotion Recognition Score (ERS)
 
-$$
+```math
 \mathrm{ERS} = \frac{1}{2}\Big(\mathrm{m}R^2+\frac{1}{2}(\mathrm{m}AP + \mathrm{m}RA)\Big).
-$$
+```
 
 ---
 
