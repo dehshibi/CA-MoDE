@@ -68,8 +68,6 @@ class ProbabilisticFusion(nn.Module):
             z_object: torch.Tensor,
     ):
         """
-        Paper-aligned CA-MoDE late probabilistic fusion.
-
         Parameters
         ----------
         emotion_output:
@@ -124,8 +122,8 @@ class ProbabilisticFusion(nn.Module):
 
         # Eq. (13): Q_i = sigmoid(alpha * (p_i^+ - tau)).
         # In this implementation:
-        #   self.tau  = alpha, gate sharpness, default 10.0
-        #   self.beta = tau, gate threshold, default 0.5
+        #   self.tau  = gate sharpness, default 10.0
+        #   self.beta = gate threshold, default 0.5
         gate_global = torch.sigmoid(
             self.tau * (p_plus_global - self.beta)
         )
