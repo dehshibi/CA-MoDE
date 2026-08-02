@@ -28,11 +28,11 @@ CA-MoDE models the relationship between bodily emotion and surrounding context e
 
 Given an input image $x$, CA-MoDE obtains a shared feature map:
 
-\[
+$$
 \mathbf{F} = \mathcal{H}^{\mathrm{base}}(\mathbf{X}),
 \qquad
 \mathbf{F} \in \mathbb{R}^{14 \times 14 \times 528}.
-\]
+$$
 
 Three domain experts process this representation:
 
@@ -41,43 +41,38 @@ Three domain experts process this representation:
 - **Emotion expert** $\mathcal{H}^{\mathrm{emotion}}$: predicts 26 discrete emotions and Valence, Arousal, and Dominance (VAD)
 
 The context experts generate empirical priors on the **training split only**:
-
-$
+$$
 \mathcal{P}^{+}_{i,j} = \Pr(\mathbb{B}_i \mid \mathbb{A}_j),
 \qquad
 \mathcal{P}^{-}_{i,j} = \Pr(\mathbb{B}_i \mid \neg\mathbb{A}_j).
-$
+$$
 
 CA-MoDE uses per-emotion max endorsement across scene and object context:
-
-$
+$$
 p_i^{+} = \max_j \mathcal{P}^{+}_{i,j},
 \qquad
 p_i^{-} = \max_j \mathcal{P}^{-}_{i,j}.
-$
+$$
 
 The gate is:
-
-$
+$$
 Q_i = \sigma\left(\alpha(p_i^{+} - \tau)\right),
-$
+$$
 
 and the final contextual prior is:
-
-$
+$$
 \hat{p}_i = Q_i p_i^{+} + (1 - Q_i)p_i^{-}.
-$
+$$
 
 The final prediction is:
-
-$
+$$
 \tilde{\mathbf{y}}
 =
 \frac{1}{\lambda}
 \hat{\mathbf{p}}
 \odot
 \mathbf{y}^{\mathrm{emotion}}.
-$
+$$
 
 ---
 
