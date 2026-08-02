@@ -76,7 +76,7 @@ $$
 \frac{1}{\lambda}
 \hat{\mathbf{p}}
 \odot
-\mathbf{y}^{\mathrm{emotion}}.
+\mathbf{y}^{\mathrm{emotion}}
 $$
 
 ---
