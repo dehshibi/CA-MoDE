@@ -28,11 +28,11 @@ CA-MoDE models the relationship between bodily emotion and surrounding context e
 
 Given an input image $x$, CA-MoDE obtains a shared feature map:
 
-$$
+\[
 \mathbf{F} = \mathcal{H}^{\mathrm{base}}(\mathbf{X}),
 \qquad
 \mathbf{F} \in \mathbb{R}^{14 \times 14 \times 528}.
-$$
+\]
 
 Three domain experts process this representation:
 
