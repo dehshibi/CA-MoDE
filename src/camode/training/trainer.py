@@ -5,9 +5,7 @@ from .losses import CAMoDELoss
 
 class Trainer:
     """
-    Training utility aligned with the CA-MoDE paper.
-
-    Default optimization settings:
+    Default optimisation settings:
     - SGD
     - Initial learning rate: 1e-2
     - Momentum: 0.9
