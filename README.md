@@ -525,11 +525,14 @@ If you use this code, model design, experimental protocol, or the BoLD evaluatio
 ### CA-MoDE
 
 ```bibtex
-@unpublished{dehshibi_camode,
-  author = {Mohammad Mahdi Dehshibi and David Masip},
-  title  = {Context-Aware Mixture of Domain Experts for Bodily Expression of Emotion in the Wild},
-  note   = {Manuscript under review},
-  year   = {2026}
+@article{dehshibi2026context,
+  title         = {{Context-Aware Mixture of Domain Experts for Bodily Expression of Emotion in the Wild}},
+  author        = {Mohammad Mahdi Dehshibi and David Masip},
+  year          = {2026},
+  eprint        = {2608.02331},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV},
+  url           = {https://arxiv.org/abs/2608.02331}, 
 }
 ```
 
